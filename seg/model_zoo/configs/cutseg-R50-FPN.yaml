@@ -1,0 +1,39 @@
+_BASE_: "Base-SemSeg-FPN.yaml"
+MODEL:
+  PIXEL_MEAN: [ 123.675, 116.280, 103.530 ]
+  PIXEL_STD: [ 58.395, 57.120, 57.375 ]
+  WEIGHTS: 'http://dl.fbaipublicfiles.com/cutler/checkpoints/dino_RN50_pretrain_d2_format.pkl'
+  #WEIGHTS: 'detectron2://ImageNetPretrained/MSRA/R-50.pkl'
+  BACKBONE:
+    FREEZE_AT: 0
+  RESNETS:
+    DEPTH: 50
+    NORM: "SyncBN"
+    STRIDE_IN_1X1: False
+  FPN:
+    NORM: "SyncBN"
+  SEM_SEG_HEAD:
+    NAME: "SemSegFPNHead"
+    NUM_CLASSES: 2
+    IGNORE_VALUE: 255
+DATASETS:
+  TRAIN: ("isic2016_train_sup",)
+  TEST: ("isic2016_test",)
+SOLVER:
+  IMS_PER_BATCH: 4
+  BASE_LR: 0.001
+  WEIGHT_DECAY: 0.00005
+  STEPS: (60000, 80000)
+  MAX_ITER: 10000
+  CHECKPOINT_PERIOD: 250
+  REFERENCE_WORLD_SIZE: 0
+TEST:
+  EVAL_PERIOD: 400
+DATALOADER:
+  COPY_PASTE: False
+  VISUALIZE_COPY_PASTE: False
+  COPY_PASTE_RANDOM_NUM: False
+  NUM_WORKERS: 0
+  FILTER_EMPTY_ANNOTATIONS: True
+OUTPUT_DIR: "seg/output/isic2016-sup"
+VERSION: 2

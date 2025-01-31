@@ -1,0 +1,11 @@
+[submodule "third_party/TokenCut"]
+	path = third_party/TokenCut
+	url = https://github.com/YangtaoWANG95/TokenCut.git
+
+[submodule "third_party/SAM-Med2D"]
+	path = third_party/SAM-Med2D
+	url = https://github.com/OpenGVLab/SAM-Med2D.git
+
+[submodule "third_party/segment-anything-2"]
+	path = third_party/segment-anything-2
+	url = https://github.com/facebookresearch/segment-anything-2.git

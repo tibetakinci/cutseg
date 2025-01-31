@@ -1,0 +1,29 @@
+MODEL:
+  META_ARCHITECTURE: "SemanticSegmentor"
+  BACKBONE:
+    NAME: "build_resnet_fpn_backbone"
+  RESNETS:
+    OUT_FEATURES: ["res2", "res3", "res4", "res5"]
+  FPN:
+    IN_FEATURES: ["res2", "res3", "res4", "res5"]
+    OUT_CHANNELS: 256
+  SEM_SEG_HEAD:
+    NAME: "build_sem_seg_head"
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES: ["p2", "p3", "p4", "p5"]
+    NUM_CLASSES: 2
+    LOSS_WEIGHT: 1.0
+  MASK_ON: True
+DATASETS:
+  TRAIN: ("isic2016_train",)
+  TEST: ("isic2016_test",)
+SOLVER:
+  IMS_PER_BATCH: 4
+  BASE_LR: 0.01
+  STEPS: (60000, 80000)
+  MAX_ITER: 3000
+INPUT:
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
+  MAX_SIZE_TRAIN: 1333

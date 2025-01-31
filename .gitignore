@@ -1,0 +1,16 @@
+__pycache__/
+.DS_Store
+
+**.out
+**.err
+
+cut/annotations
+cut/output
+cut/demo
+cut/pretrain
+cut/results
+
+seg/logs
+seg/output
+
+results
