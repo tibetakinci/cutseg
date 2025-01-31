@@ -15,7 +15,7 @@ Code release for unsupervised semantic segmentation on skin lesion datasets.
 # Setup
 Clone this repository:
 ```
-git clone --recursive https://github.com/tibetakinci/thesis
+git clone --recursive https://github.com/tibetakinci/cutseg.git
 ```
 
 # Installation
